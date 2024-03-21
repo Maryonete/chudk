@@ -12,6 +12,7 @@ __pycache__/
 
 # config 
 config.py
+patients_data.json
 
 # Distribution / packaging
 .Python

@@ -9,7 +9,14 @@ class MyApp(tk.Tk):
         super().__init__()
 
         self.wm_iconbitmap(ICONE_APLI)  # Définit l'icône de l'application
-        self.geometry("800x600")  # Taille fixe de la fenêtre principale
+        # Récupère les dimensions de l'écran
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+
+        # Définit la géométrie de la fenêtre pour la moitié de l'écran en largeur et toute la hauteur
+        half_screen_width = screen_width // 2
+        self.geometry(f"{half_screen_width}x{screen_height}")
+        
         self.title("SoigneMoi")  # Titre de la fenêtre principale
 
         if is_logged_in:
