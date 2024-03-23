@@ -1,15 +1,24 @@
 import tkinter as tk
-from src.utils.constants import ICONE_APLI
 from src.windows.login_page import LoginPage
 from src.windows.home_page import HomePage
 from src.utils.auth import is_logged_in
-
+import ttkbootstrap as ttk
+import os
 class MyApp(tk.Tk):
     def __init__(self):
         super().__init__()
+        self.iconbitmap("C:/python/chudk/images/favicon.ico")
 
-        self.wm_iconbitmap(ICONE_APLI)  # Définit l'icône de l'application
-        self.geometry("800x600")  # Taille fixe de la fenêtre principale
+        
+        # Récupère les dimensions de l'écran
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+
+        # Définit la géométrie de la fenêtre pour la moitié de l'écran en largeur et toute la hauteur
+        half_screen_width = screen_width // 2
+        half_screen_height = (2 * screen_height) // 3 
+        self.geometry(f"{half_screen_width}x{half_screen_height}")
+        
         self.title("SoigneMoi")  # Titre de la fenêtre principale
 
         if is_logged_in:
@@ -18,7 +27,7 @@ class MyApp(tk.Tk):
             self.show_login_page()
 
     def show_home_page(self):
-        self.title("Hospital SoigneMoi - Accueil")
+        self.title("Hospital SoigneMoi")
         self.home_page = HomePage(self)
         self.home_page.pack(fill=tk.BOTH, expand=True)
 
