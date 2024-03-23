@@ -43,7 +43,6 @@ class PatientPage(tk.Frame):
         # Define detail_frame and prescription_frame as attributes
         self.detail_frame = tk.Frame(self)
         self.prescription_frame = tk.Frame(self)
-
         
     
         # Accéder à l'icône d'avertissement
@@ -60,7 +59,8 @@ class PatientPage(tk.Frame):
 
         for patient in self.patients_data:
             if patient['type'] == 'in':
-                entry_info = (patient['id'], f"{patient['patient_infos']['firstname']} {patient['patient_infos']['lastname']}", patient['heure'])
+                nom_complet = f"{patient['patient_infos']['firstname']} {patient['patient_infos']['lastname']}"
+                entry_info = (patient['id'], nom_complet, patient['heure'])
                 entries_data.append(entry_info)
             elif patient['type'] == 'out':
                 exit_info = (patient['id'], f"{patient['patient_infos']['firstname']} {patient['patient_infos']['lastname']}", patient['heure'])

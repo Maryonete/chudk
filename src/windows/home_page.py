@@ -19,7 +19,7 @@ class HomePage(ttk.Frame):
         # --------------------------------------
         # application images
         self.images = [
-            tk.PhotoImage(name='logo', file=PATH / 'logoBlack.png', height=100),
+            tk.PhotoImage(name='logo', file="C:/python/chudk/images/logoBlack.png", height=100),
         ]
 
         # Create and pack the title label

@@ -1,14 +1,15 @@
 import tkinter as tk
-from src.utils.constants import ICONE_APLI
 from src.windows.login_page import LoginPage
 from src.windows.home_page import HomePage
 from src.utils.auth import is_logged_in
 import ttkbootstrap as ttk
+import os
 class MyApp(tk.Tk):
     def __init__(self):
         super().__init__()
+        self.iconbitmap("C:/python/chudk/images/favicon.ico")
 
-        self.wm_iconbitmap(ICONE_APLI)  # Définit l'icône de l'application
+        
         # Récupère les dimensions de l'écran
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
