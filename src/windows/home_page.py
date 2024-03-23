@@ -1,40 +1,69 @@
 import tkinter as tk
-from tkinter import * 
-from tkinter import ttk
-
+from tkinter import ttk, Scrollbar
+import ttkbootstrap as ttk
+from ttkbootstrap.constants import *
 from src.windows.patient_page import PatientPage
-
-import tkinter as tk
-from tkinter import ttk
-from src.utils.functions import fetch_patients, save_to_file
-from datetime import datetime
-from config import GET_DATA_FROM_FILE
-import json
+from pathlib import Path
 
 
-class HomePage(tk.Frame):
+PATH = Path(__file__).parent.parent.parent / 'images'
 
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.parent = parent
+class HomePage(ttk.Frame):
 
-        # Create frames
-        self.list_frame = ttk.Frame(self, borderwidth=2)
-        self.list_frame.pack(side=LEFT, padx=30, pady=30)
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        self.pack(fill=BOTH, expand=True)
 
-        self.detail_frame = ttk.Frame(self)
-        self.prescription_frame = ttk.Frame(self)
+        # --------------------------------------
+        # HEADER
+        # --------------------------------------
+        # application images
+        self.images = [
+            tk.PhotoImage(name='logo', file=PATH / 'logoBlack.png', height=100),
+        ]
 
-        # Grid configuration
-        self.list_frame.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
-        self.detail_frame.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
-        self.prescription_frame.grid(row=0, column=2, padx=10, pady=10, sticky="nsew")
+        # Create and pack the title label
+        headFrame = ttk.Frame(self, padding=20, bootstyle=SECONDARY)
+        headFrame.grid(row=0, column=0, columnspan=3, sticky=EW)
+        hdr_label = ttk.Label(
+            master=headFrame,
+            image='logo',
+            bootstyle=(INVERSE, SECONDARY)
+        )
+        hdr_label.pack(side=LEFT)
+        logo_text = ttk.Label(
+            master=headFrame,
+            text='Patients du jour',
+            font=('TkDefaultFixed', 30),
+            bootstyle=(INVERSE, SECONDARY)
+        )
+        logo_text.pack(side=LEFT, padx=10)
+        self.columnconfigure(0, weight=1)
+        # --------------------------------------
+        # BODY
+        # --------------------------------------
+        # Create a parent frame for patients list, details, and prescriptions
+        bodyFrame = ttk.Frame(self)
+        bodyFrame.grid(row=1, column=0, columnspan=3, sticky=NSEW, padx=30, pady=30)
+        bodyFrame.columnconfigure((0, 1, 2), minsize=250)
+        bodyFrame.rowconfigure(0, weight=1)
 
-        # Calculate and set prescription frame width
-        window_width = self.winfo_reqwidth()
-        self.prescription_frame_width = (window_width - 40) // 3
-        self.prescription_frame.config(width=self.prescription_frame_width)
+       # Configure column 0 to resize with the window
+        self.columnconfigure(0, weight=1)
 
+        self.list_frame = ttk.Frame(bodyFrame, relief="sunken")
+        # Crée une barre de défilement
+        scrollbar = Scrollbar(self.list_frame)
+        scrollbar.pack(side='right', fill='y')
+        
+        self.detail_frame = ttk.Frame(bodyFrame, borderwidth=2, relief="sunken")
+        self.prescription_frame = ttk.Frame(bodyFrame)
+
+        # Grid the frames within the parent frame
+        self.list_frame.grid(row=0, column=0, sticky=NSEW, padx=10, pady=10)
+        self.detail_frame.grid(row=0, column=1, sticky=NSEW, padx=10, pady=10)
+        self.prescription_frame.grid(row=0, column=2, sticky=NSEW, padx=10, pady=10)
+        
         # Fetch and display patients
         self.show_patients_list()
 
@@ -47,6 +76,10 @@ class HomePage(tk.Frame):
 
 if __name__ == "__main__":
     root = tk.Tk()
+    style = ttk.Style("darkly")
+
+    # new approach
+    root = ttk.Window(themename="sandstone")
     root.title("Page d'accueil")
     home_page = HomePage(root)
     home_page.pack(fill=tk.BOTH, expand=True)

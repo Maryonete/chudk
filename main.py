@@ -3,7 +3,7 @@ from src.utils.constants import ICONE_APLI
 from src.windows.login_page import LoginPage
 from src.windows.home_page import HomePage
 from src.utils.auth import is_logged_in
-
+import ttkbootstrap as ttk
 class MyApp(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -15,7 +15,8 @@ class MyApp(tk.Tk):
 
         # Définit la géométrie de la fenêtre pour la moitié de l'écran en largeur et toute la hauteur
         half_screen_width = screen_width // 2
-        self.geometry(f"{half_screen_width}x{screen_height}")
+        half_screen_height = (2 * screen_height) // 3 
+        self.geometry(f"{half_screen_width}x{half_screen_height}")
         
         self.title("SoigneMoi")  # Titre de la fenêtre principale
 
@@ -25,7 +26,7 @@ class MyApp(tk.Tk):
             self.show_login_page()
 
     def show_home_page(self):
-        self.title("Hospital SoigneMoi - Accueil")
+        self.title("Hospital SoigneMoi")
         self.home_page = HomePage(self)
         self.home_page.pack(fill=tk.BOTH, expand=True)
 

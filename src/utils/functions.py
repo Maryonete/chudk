@@ -32,6 +32,6 @@ def fetch_patients():
         # Call the API function to fetch patients of the day
         return patients_data or []
     
-def save_to_file(self, data, filename):
+def save_to_file(data, filename):
     with open(filename, 'w') as f:
         json.dump(data, f)
