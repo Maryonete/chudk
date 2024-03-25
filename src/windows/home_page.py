@@ -7,7 +7,6 @@ from pathlib import Path
 
 
 PATH = Path(__file__).parent.parent.parent / 'images'
-
 class HomePage(ttk.Frame):
 
     def __init__(self, master, **kwargs):
@@ -24,7 +23,7 @@ class HomePage(ttk.Frame):
 
         # Create and pack the title label
         headFrame = ttk.Frame(self, padding=20, bootstyle=SECONDARY)
-        headFrame.grid(row=0, column=0, columnspan=3, sticky=EW)
+        headFrame.pack(side=TOP, fill=X)  # Pack header at the top
         hdr_label = ttk.Label(
             master=headFrame,
             image='logo',
@@ -38,38 +37,51 @@ class HomePage(ttk.Frame):
             bootstyle=(INVERSE, SECONDARY)
         )
         logo_text.pack(side=LEFT, padx=10)
-        self.columnconfigure(0, weight=1)
+
+        # Add the Quit button on the right side
+        quit_button = ttk.Button(
+            master=headFrame,
+            text='Quitter',
+            command=self.master.destroy,
+            style="PrimaryButton.TButton", 
+            width=12
+        )
+        quit_button.pack(side=RIGHT, padx=10)
+
         # --------------------------------------
         # BODY
         # --------------------------------------
+
         # Create a parent frame for patients list, details, and prescriptions
         bodyFrame = ttk.Frame(self)
-        bodyFrame.grid(row=1, column=0, columnspan=3, sticky=NSEW, padx=30, pady=30)
-        bodyFrame.columnconfigure((0, 1, 2), minsize=250)
-        bodyFrame.rowconfigure(0, weight=1)
+        bodyFrame.pack(fill=BOTH, expand=True)  # Fill entire available space
 
-       # Configure column 0 to resize with the window
-        self.columnconfigure(0, weight=1)
-
+        # Frame liste patients
         self.list_frame = ttk.Frame(bodyFrame, relief="sunken")
-        # Crée une barre de défilement
-        scrollbar = Scrollbar(self.list_frame)
-        scrollbar.pack(side='right', fill='y')
-        
-        self.detail_frame = ttk.Frame(bodyFrame, borderwidth=2, relief="sunken")
-        self.prescription_frame = ttk.Frame(bodyFrame)
+        self.list_frame.pack(side=LEFT, fill=Y)
 
-        # Grid the frames within the parent frame
-        self.list_frame.grid(row=0, column=0, sticky=NSEW, padx=10, pady=10)
-        self.detail_frame.grid(row=0, column=1, sticky=NSEW, padx=10, pady=10)
-        self.prescription_frame.grid(row=0, column=2, sticky=NSEW, padx=10, pady=10)
+        list_content_frame = ttk.Frame(self.list_frame)
+        list_content_frame.pack(side=LEFT, fill=BOTH, expand=True) 
+
+        list_frame_width = int(bodyFrame.winfo_width() / 4)
+        self.list_frame.config(width=list_frame_width)
+
+        # Taille des frames
+        list_frame_width = int(bodyFrame.winfo_width() / 3)
         
+        self.detail_frame = ttk.Frame(bodyFrame)
+        self.detail_frame.pack(fill=Y, side=LEFT)  
+        self.detail_frame.config(width=list_frame_width)
+
+        self.prescription_frame = ttk.Frame(bodyFrame)
+        self.prescription_frame.pack(fill=BOTH, side=LEFT, expand=True)  # Fill within detail_and_prescription_frame
+
         # Fetch and display patients
         self.show_patients_list()
 
     def show_patients_list(self):
         patient_page = PatientPage(self.list_frame, self)
-        patient_page.pack(fill="both", expand=True)
+        patient_page.pack(fill="both")
         patient_page.detail_frame = self.detail_frame
         patient_page.prescription_frame = self.prescription_frame
         patient_page.show_patients_list()

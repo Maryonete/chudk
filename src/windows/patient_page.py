@@ -1,25 +1,12 @@
 import tkinter as tk
-from tkinter import ttk
-from PIL import Image, ImageTk
+from tkinter import *
 from src.utils.functions import fetch_patients, save_to_file
+from src.utils.constants import DetailButton
 from datetime import datetime
 from config import GET_DATA_FROM_FILE
 import ttkbootstrap as ttk
 from ttkbootstrap.icons import Icon
-
 from ttkbootstrap.constants import *
-
-class DetailButton(ttk.Frame):
-    def __init__(self, master, image, command=None, style=None, **kwargs):
-        super().__init__(master, **kwargs)
-        
-        if style:
-            self.image_button = ttk.Button(self, image=image, command=command, style=style, cursor="hand2")
-        else:
-            self.image_button = ttk.Button(self, image=image, command=command, cursor="hand2")
-            
-        self.image_button.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-
 
 class PatientPage(tk.Frame):
     
@@ -31,22 +18,27 @@ class PatientPage(tk.Frame):
         # Create the frame to display the patient list
         self.list_frame = tk.Frame(self)
         self.list_frame.pack(fill="both", expand=True)
-        self.notebook = ttk.Notebook(self.list_frame)
+        canvas = Canvas(self.list_frame, bg = 'red')
+
+        # start of Notebook (multiple tabs)
+        self.notebook = ttk.Notebook(canvas)
         self.notebook.pack(fill='both', expand=True)
 
         # Create separate frames for entries and exits
         self.entries_frame = ttk.Frame(self.notebook)
-        self.exits_frame = ttk.Frame(self.notebook)
         self.notebook.add(self.entries_frame, text='Entrées')
+       
+        self.exits_frame = ttk.Frame(self.notebook)
         self.notebook.add(self.exits_frame, text='Sorties')
-
+        
         # Define detail_frame and prescription_frame as attributes
         self.detail_frame = tk.Frame(self)
         self.prescription_frame = tk.Frame(self)
-        
     
         # Accéder à l'icône d'avertissement
         self.image_loupe = tk.PhotoImage(data=Icon.info)
+
+        self.show_patients_list()
 
     def show_patients_list(self):
         print('show_patients_list')
@@ -89,7 +81,6 @@ class PatientPage(tk.Frame):
             ttk.Label(frame, text=patient_info[0], padding=(10, 5)).grid(row=row_index, column=1, sticky="ew")
             ttk.Label(frame, text=patient_info[1], padding=(10, 5)).grid(row=row_index, column=2, sticky="ew")
             ttk.Label(frame, text=patient_info[2], padding=(10, 5)).grid(row=row_index, column=3, sticky="ew")
-
 
             # Add "Détail" button at the end of each row
             detail_button = DetailButton(frame, image=self.image_loupe, command=lambda i=i: self.show_patient_details(i), style='Link.TButton')

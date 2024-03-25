@@ -8,16 +8,14 @@ class MyApp(tk.Tk):
     def __init__(self):
         super().__init__()
         self.iconbitmap("C:/python/chudk/images/favicon.ico")
-
         
         # Récupère les dimensions de l'écran
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
 
         # Définit la géométrie de la fenêtre pour la moitié de l'écran en largeur et toute la hauteur
-        half_screen_width = screen_width // 2
-        half_screen_height = (2 * screen_height) // 3 
-        self.geometry(f"{half_screen_width}x{half_screen_height}")
+        # self.geometry(f"{screen_width}x{screen_height}")
+        self.geometry(f"800x600")
         
         self.title("SoigneMoi")  # Titre de la fenêtre principale
 
