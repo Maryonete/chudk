@@ -15,7 +15,7 @@ class MyApp(tk.Tk):
 
         # Définit la géométrie de la fenêtre pour la moitié de l'écran en largeur et toute la hauteur
         # self.geometry(f"{screen_width}x{screen_height}")
-        self.geometry(f"800x600")
+        self.geometry(f"1200x800")
         
         self.title("SoigneMoi")  # Titre de la fenêtre principale
 

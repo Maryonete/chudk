@@ -1,5 +1,4 @@
-from tkinter import ttk  # Pour les éléments Bootstrap
-
+from tkinter.ttk import Style
 styles = {
     "label_bg": "#f0f0f0",
     "label_bg": "#ffffff",
@@ -36,5 +35,8 @@ def set_entry_style(style):
     style.configure("EntryStyle.TEntry",
                     font=label_font,
                     padding=5)
+
+
+
 
 

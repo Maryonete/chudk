@@ -66,11 +66,11 @@ class HomePage(ttk.Frame):
         list_frame_width = int(bodyFrame.winfo_width() / 4)
         self.list_frame.config(width=list_frame_width)
 
-        # Taille des frames
-        list_frame_width = int(bodyFrame.winfo_width() / 3)
         
         self.detail_frame = ttk.Frame(bodyFrame)
         self.detail_frame.pack(fill=Y, side=LEFT)  
+        # Taille des frames
+        list_frame_width = int(bodyFrame.winfo_width() / 3)
         self.detail_frame.config(width=list_frame_width)
 
         self.prescription_frame = ttk.Frame(bodyFrame)

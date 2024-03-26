@@ -1,54 +1,55 @@
 # Hospital SoigneMoi
 
-SoigneMoi est une application développée par Develop-Solution pour l'hôpital SoigneMoi, situé dans la région lilloise en France. Cette application vise à améliorer l'efficacité de l'hôpital en proposant des outils informatisés pour la gestion des admissions, des séjours et des prescriptions médicales.
+SoigneMoi is an application developed by Develop-Solution for the SoigneMoi hospital, located in the Lille region of France. This application aims to improve the efficiency of the hospital by providing computerized tools for managing admissions, stays, and medical prescriptions.
 
-## Fonctionnalités
+## Features
 
-- Gestion des patients : Suivi des entrées et sorties des patients avec affichage des informations générales.
-- Prescriptions médicales : Affichage des prescriptions médicales pour chaque patient, avec les détails sur les médicaments prescrits et les posologies.
-- Avis des patients : Consultation des avis des patients concernant leur séjour à l'hôpital, avec la possibilité de visualiser les détails de chaque avis.
-- Séjours hospitaliers : Gestion des séjours hospitaliers des patients, avec des informations sur la raison du séjour, la description et les détails du médecin en charge.
+  - Patient Management: Tracking of patient admissions and discharges with display of general information.
+  - Medical Prescriptions: Display of medical prescriptions for each patient, including details on prescribed medications and dosages.
+  - Patient Reviews: Consultation of patient reviews regarding their hospital stay, with the ability to view details of each review.
+  - Hospital Stays: Management of patient hospital stays, with information on the reason for the stay, description, and details of the attending physician.
 
-## Utilisation directe
+## Direct Use
 
-Pour utiliser l'application, veuillez télécharger l'exécutable suivant:
+To use the application, please download the following executable:
 ```bash
 https://github.com/Maryonete/chudk/dist/main.exe
 ```
 
-## Installation locale
+## Local Installation
 
-### Prérequis
+### Prerequisites
 
-Assurez-vous d'avoir les éléments suivants installés avant de commencer :
-- Assurez-vous d'avoir Python installé sur votre système. Vous pouvez le télécharger sur [python.org](https://www.python.org/).
+Make sure you have the following installed before you start:
+
+  - Make sure you have Python installed on your system. You can download it from  [python.org](https://www.python.org/).
 
 ### Installation
 
-2. Clonez ce dépôt sur votre machine locale :
+1. Clone this repository to your local machine:
 ```bash
 git clone https://github.com/Maryonete/chudk
 ```
-3. Accédez au répertoire du projet :
+2. Navigate to the project directory:
 ```bash
  cd chudk
 ```
-4. Environnement virtuel (facultatif mais recommandé) :
+3. Virtual Environment (optional but recommended):
     ```bash
     python -m venv mon_env
     ``` 
-5. Installez les dépendances requises en exécutant la commande suivante :
+4. Install the required dependencies by running the following command:
 ```bash
 pip install -r requirements.txt
 ```
-6. Lancez l'application en exécutant le fichier `main.py` :
+5. Launch the application by running the main.py file:
 ```bash
 python main.py
 ```
 
-#### Identifiants des utilisateurs tests
+#### Test User Credentials
 
-- **Secretaire**:
+- **Secretary**:
 
   - Email: staff@studi.fr
-  - Mot de passe: test
+  - Password: test
