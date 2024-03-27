@@ -23,6 +23,7 @@ https://github.com/Maryonete/chudk/main.exe
 Make sure you have the following installed before you start:
 
   - Make sure you have Python installed on your system. You can download it from  [python.org](https://www.python.org/).
+  - pip (Python package manager)
 
 ### Installation
 
@@ -34,11 +35,20 @@ git clone https://github.com/Maryonete/chudk
 ```bash
  cd chudk
 ```
-3. Install the required dependencies by running the following command:
+3. Activate the virtual environment with the command :
+  - for Unix/MacOS :
+```bash
+ source env/bin/activate
+```
+  - for Windows:
+```bash
+ source env/scripts/activate
+```
+4. Install the required dependencies by running the following command:
 ```bash
 pip install -r requirements.txt
 ```
-4. Launch the application by running the main.py file:
+5. Launch the application by running the main.py file:
 ```bash
 python main.py
 ```
