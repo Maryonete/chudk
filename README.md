@@ -35,9 +35,9 @@ git clone https://github.com/Maryonete/chudk
  cd chudk
 ```
 3. Virtual Environment (optional but recommended):
-    ```bash
-    python -m venv mon_env
-    ``` 
+```bash
+python -m venv mon_env
+``` 
 4. Install the required dependencies by running the following command:
 ```bash
 pip install -r requirements.txt
