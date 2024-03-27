@@ -11,7 +11,7 @@ __pycache__/
 *.so
 
 # config 
-config.py
+# config.py
 patients_data.json
 
 # Distribution / packaging

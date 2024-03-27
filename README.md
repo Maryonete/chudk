@@ -13,7 +13,7 @@ SoigneMoi is an application developed by Develop-Solution for the SoigneMoi hosp
 
 To use the application, please download the following executable:
 ```bash
-https://github.com/Maryonete/chudk/dist/main.exe
+https://github.com/Maryonete/chudk/main.exe
 ```
 
 ## Local Installation
