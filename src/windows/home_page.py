@@ -1,10 +1,10 @@
 import tkinter as tk
-from tkinter import ttk, Scrollbar
+from tkinter import ttk
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 from src.windows.patient_page import PatientPage
 from pathlib import Path
-
+from src.windows.styles import AppStyle
 
 PATH = Path(__file__).parent.parent.parent / 'images'
 class HomePage(ttk.Frame):
@@ -12,7 +12,10 @@ class HomePage(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.pack(fill=BOTH, expand=True)
-
+        
+        self.stylettk = ttk.Style()
+        self.style = AppStyle()
+        self.style.set_headframe_style(self.stylettk)
         # --------------------------------------
         # HEADER
         # --------------------------------------
@@ -22,7 +25,7 @@ class HomePage(ttk.Frame):
         ]
 
         # Create and pack the title label
-        headFrame = ttk.Frame(self, padding=20, bootstyle=SECONDARY)
+        headFrame = ttk.Frame(self,style="HeadFrame.TFrame")
         headFrame.pack(side=TOP, fill=X)  # Pack header at the top
         hdr_label = ttk.Label(
             master=headFrame,
@@ -30,21 +33,26 @@ class HomePage(ttk.Frame):
             bootstyle=(INVERSE, SECONDARY)
         )
         hdr_label.pack(side=LEFT)
-        logo_text = ttk.Label(
+        
+        header_text = tk.Label(
             master=headFrame,
             text='Patients du jour',
-            font=('TkDefaultFixed', 30),
-            bootstyle=(INVERSE, SECONDARY)
+            font=("Georgia", 30),
         )
-        logo_text.pack(side=LEFT, padx=10)
-
+        header_text.pack(side=LEFT, padx=10)
+        header_text.config(background=self.style.blue_color,
+            fg=self.style.bg_color)
+        
+        self.style.set_left_button_style(self.stylettk)
+        self.style.set_hover_button_color(self.stylettk)
+        
         # Add the Quit button on the right side
         quit_button = ttk.Button(
             master=headFrame,
             text='Quitter',
-            command=self.master.destroy,
-            style="PrimaryButton.TButton", 
-            width=12
+            command=self.master.destroy, 
+            style="LeftButton.TButton", 
+            width=12,
         )
         quit_button.pack(side=RIGHT, padx=10)
 

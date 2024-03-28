@@ -1,5 +1,5 @@
 import jwt
-from config import SECRET_KEY, GET_DATA_FROM_FILE
+from config import  GET_DATA_FROM_FILE
 from src.api_manager import api_patients_of_the_day
 import json
 

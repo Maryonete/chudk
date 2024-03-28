@@ -5,6 +5,7 @@ from datetime import datetime
 import ttkbootstrap as ttk
 from ttkbootstrap.icons import Icon
 from ttkbootstrap.constants import *
+from src.windows.styles import AppStyle
 
 class DetailButton(ttk.Frame):
     def __init__(self, master, image, command=None, style=None, **kwargs):
@@ -44,6 +45,9 @@ class PatientPage(tk.Frame):
     
         # Accéder à l'icône d'avertissement
         self.image_loupe = tk.PhotoImage(data=Icon.info)
+
+        self.stylettk = ttk.Style()
+        self.style = AppStyle()
 
 
     def on_frame_configure(self, event):
@@ -145,9 +149,12 @@ class PatientPage(tk.Frame):
             ttk.Label(general_frame, text=patient['patient_infos']['adcountry']).grid(row=5, column=1, sticky="w", padx=5, pady=5)
 
         # Ajout des boutons pour les prescriptions et les avis
-        prescription_button = ttk.Button(general_frame, text="Prescriptions", command=lambda: self.show_prescriptions(patient, self.prescription_frame))
-        opinion_button = ttk.Button(general_frame, text="Avis", command=lambda: self.show_opinions(patient, self.prescription_frame))
-        stay_button = ttk.Button(general_frame, text="Séjours", command=lambda: self.showStays(patient, self.prescription_frame))
+        self.style.set_primary_button_style(self.stylettk)
+        self.style.set_hover_button_color(self.stylettk)
+        
+        prescription_button = ttk.Button(general_frame, text="Prescriptions", command=lambda: self.show_prescriptions(patient, self.prescription_frame), style="Button.TButton")
+        opinion_button = ttk.Button(general_frame, text="Avis", command=lambda: self.show_opinions(patient, self.prescription_frame), style="Button.TButton")
+        stay_button = ttk.Button(general_frame, text="Séjours", command=lambda: self.showStays(patient, self.prescription_frame), style="Button.TButton")
 
         prescription_button.grid(row=6, column=0, padx=5, pady=5, sticky="ew", columnspan=3)
         opinion_button.grid(row=7, column=0, padx=5, pady=5, sticky="ew", columnspan=3)
