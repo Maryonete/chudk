@@ -19,7 +19,7 @@ class LoginPage(tk.Frame):
         self.style = AppStyle()
 
         # Chargez l'image du logo
-        logo_image = Image.open("images/logo.png")
+        logo_image = Image.open("C:/python/chudk/images/logo.png")
         logo_image.thumbnail((200, 200))
         self.logo_photoimage = ImageTk.PhotoImage(logo_image)
         self.logo_label = tk.Label(self, image=self.logo_photoimage)
